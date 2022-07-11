@@ -141,10 +141,9 @@ class InfoQuizizz:
             except KeyError:
                 ranking_gen_11[name] = score
             try:
-                self.accuracy_gen_11.update({name: self.accuracy_gen_11[name] + 100})
                 self.rep_accuracy.update({name: self.rep_accuracy[name] + 1})
             except KeyError:
-                self.accuracy_gen_11[name] = 100
+                self.accuracy_gen_11[name] = '100 %'
                 self.rep_accuracy[name] = 1
         self.score_gen_11 = ranking_gen_11
 
@@ -192,15 +191,11 @@ class InfoQuizizz:
             except IndexError:
                 break
             index_porcent = porcent_accuracy.find('%')
-            try:
-                index_porcent_2 = self.dict_gen_11[name]['accuracy'].find('%')
-                porcent_in_dict = float(self.dict_gen_11[name]['accuracy'][0:index_porcent_2 - 1])
-            except AttributeError:
-                index_porcent_2 = 0
-                porcent_in_dict = float(self.dict_gen_11[name]['accuracy'])
-                print(porcent_in_dict)
-            
+            index_porcent_2 = self.dict_gen_11[name]['accuracy'].find('%')
+
+            porcent_in_dict = float(self.dict_gen_11[name]['accuracy'][0:index_porcent_2 - 1])
             porcent_required = float(porcent_accuracy[0 : index_porcent - 1])
+            
             if porcent_in_dict >= porcent_required: 
                 dict_winners[name] = self.dict_gen_11[name] 
             i += 1

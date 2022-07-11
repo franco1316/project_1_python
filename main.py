@@ -38,7 +38,7 @@ gen_11_score_data.add_extra_score(add_score_1, add_score_2)
 gen_11_score_data.sort_ranking_score()
 
 gen_11_score_data.get_all_data()
-gen_11_score_data.winners = gen_11_score_data.get_top_x(n = winners_number)
+gen_11_score_data.winners = gen_11_score_data.get_top_x(n = winners_number, porcent_accuracy = '100 %')
 gen_11_score_data.show_dict(gen_11_score_data.winners, color = 'turqoise')
 
 #just only accuracy dont have any sense, it would something ilogic
