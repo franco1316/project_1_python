@@ -183,7 +183,7 @@ class InfoQuizizz:
         self.dict_gen_11 = all_data
         self.show_dict(all_data)
 
-    def get_top_x(self, n: int = 2) -> dict:
+    def get_top_x(self, n: int = 2, porcent_accuracy: str = '70 %') -> dict:
         dict_winners = {}
         i = 0
         while(i < n): 
@@ -191,7 +191,18 @@ class InfoQuizizz:
                 name = list(self.dict_gen_11)[i]
             except IndexError:
                 break
-            dict_winners[name] = self.dict_gen_11[name] 
+            index_porcent = porcent_accuracy.find('%')
+            try:
+                index_porcent_2 = self.dict_gen_11[name]['accuracy'].find('%')
+                porcent_in_dict = float(self.dict_gen_11[name]['accuracy'][0:index_porcent_2 - 1])
+            except AttributeError:
+                index_porcent_2 = 0
+                porcent_in_dict = float(self.dict_gen_11[name]['accuracy'])
+                print(porcent_in_dict)
+            
+            porcent_required = float(porcent_accuracy[0 : index_porcent - 1])
+            if porcent_in_dict >= porcent_required: 
+                dict_winners[name] = self.dict_gen_11[name] 
             i += 1
         return dict_winners
 
